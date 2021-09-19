@@ -69,3 +69,7 @@ When we attend to define a principal filter in Lean, we will be required to prov
 
 Filter Order
 ============
+
+Exercices
+=========
+The aim of this subsection is to propose some exercises that will help the reader to test the knoledge presented above. All exercises will be separated in the sections we have follow and also will be presented in Lean and the realuar way.
