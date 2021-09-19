@@ -72,4 +72,7 @@ Filter Order
 
 Exercices
 =========
-The aim of this subsection is to propose some exercises that will help the reader to test the knoledge presented above. All exercises will be separated in the sections we have follow and also will be presented in Lean and the realuar way.
+This subsection aims to propose some exercises that will help the reader to test the knowledge presented above. All are written in Lean and the usual way and separated into the sections we have followed.
+
+Filter definition
+-----------------
