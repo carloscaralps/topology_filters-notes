@@ -76,3 +76,29 @@ This subsection aims to propose some exercises that will help the reader to test
 
 Filter definition
 -----------------
+  (i) **Exercise 1.** Let ``X`` be a set, a filter ``F`` of X and two subsets ``V,U ⊆ X``. The intersection of the subsets is on the filter if only if both are in the filter.
+  (ii) **Exercise 2.** 
+  
+.. code:: lean
+
+  import data.set.basic
+  open set
+
+  structure filter (X : Type) :=
+  (sets                   : set (set X))
+  (univ_sets              : set.univ ∈ sets)
+  (sets_of_superset {x y} : x ∈ sets → x ⊆ y → y ∈ sets)
+  (inter_sets {x y}       : x ∈ sets → y ∈ sets → x ∩ y ∈ sets)
+  
+  def principal {X : Type} (s : set X) : filter X :=
+  { sets              := {t | s ⊆ t},
+    univ_sets         := subset_univ s,
+    sets_of_superset  := assume x y hx hy, subset.trans hx hy,
+    inter_sets        := assume x y, subset_inter }
+    
+  localized "notation `P` := filter.principal" in filter
+  
+  lemma exercise1 {X : Type} {f : filter X} {s t : set X} : s ∩ t ∈ f ↔ s ∈ f ∧ t ∈ f :=
+  begin
+    sorry
+  end
