@@ -76,8 +76,8 @@ This subsection aims to propose some exercises that will help the reader to test
 
 Filter definition
 -----------------
-  (i) **Exercise 1.** Let ``X`` be a set, a filter ``F`` of X and two subsets ``V,U ⊆ X``. The intersection of the subsets is on the filter if only if both are in the filter.
-  (ii) **Exercise 2.** 
+  (i) **Exercise 1.** Let ``X`` be a set, a filter ``F`` of ``X`` and two subsets ``V,U ⊆ X``. The intersection of the subsets is on the filter if only if both are in the filter.
+  (ii) **Exercise 2.** Let ``X`` be a set, a filter ``F`` of ``X`` and two subsets ``V,U ⊆ X``. If the subset ``{x | if x ∈ V then x ∈ U and if x ∈ U then x ∈ V}`` then ``V`` is in the filter if only if ``U`` is in the filter.
   
 .. code:: lean
 
@@ -97,8 +97,15 @@ Filter definition
     inter_sets        := assume x y, subset_inter }
     
   localized "notation `P` := filter.principal" in filter
+  variables {X : Type} {f : filter X}
   
-  lemma exercise1 {X : Type} {f : filter X} {s t : set X} : s ∩ t ∈ f ↔ s ∈ f ∧ t ∈ f :=
+  lemma exercise1 {s t} : s ∩ t ∈ f.sets ↔ s ∈ f.sets ∧ t ∈ f.sets :=
   begin
     sorry
   end
+  
+  lemma exercise2 {s t} (h : {x | x ∈ s ↔ x ∈ t} ∈ f.sets) : s ∈ f.sets ↔ t ∈ f.sets :=
+  begin
+    sorry
+  end
+
