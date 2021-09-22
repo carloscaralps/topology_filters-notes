@@ -104,8 +104,8 @@ Filter definition
     sorry
   end
   
-  lemma exercise2 {s t} (h : {x | x ∈ s ↔ x ∈ t} ∈ f.sets) : 
-    s ∈ f.sets ↔ t ∈ f.sets :=
+  lemma exercise2 {s t} (h : {x | x ∈ s → x ∈ t} ∈ f.sets) : 
+    s ∈ f.sets → t ∈ f.sets :=
   begin
     sorry
   end
