@@ -77,7 +77,7 @@ This subsection aims to propose some exercises that will help the reader to test
 Filter definition
 -----------------
   (i) **Exercise 1.** Let ``X`` be a set, a filter ``F`` of ``X`` and two subsets ``V,U ⊆ X``. The intersection of the subsets is on the filter if only if both are in the filter.
-  (ii) **Exercise 2.** Let ``X`` be a set, a filter ``F`` of ``X`` and two subsets ``V,U ⊆ X``. If the subset ``{x | if x ∈ V then x ∈ U and if x ∈ U then x ∈ V}`` then ``V`` is in the filter if only if ``U`` is in the filter.
+  (ii) **Exercise 2.** Let ``X`` be a set, a filter ``F`` of ``X`` and two subsets ``V,U ⊆ X``. If the subset ``{x | if x ∈ V then x ∈ U }``is in the filter, then ``U`` is in the filter if ``V`` is in the filter.
   
 .. code:: lean
 
