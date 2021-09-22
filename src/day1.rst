@@ -42,7 +42,7 @@ We have introduced a definition of what we have supposed to be a particular type
 *Proof*. We will prove that a principal filter is a filter by proving the three properties of filters.
 
   (i) It is clear that ``A ⊆ X``. Then, by definition, we have ``X ∈ P(A)``.
-  (ii) If we have ``E ∈ P(A)``, by definition, we also have ``A ⊆ E``. For all ``B ∈ 𝓟(X)`` such that ``E ⊆ B``, we will have ``A ⊆ B`` because of fundamental set propositions. Then we can conclude that ``B ∈ P(A)``.
+  (ii) If we have ``E ∈ P(A)``, by definition, we also have ``A ⊆ E``. For all ``B  𝓟(X)`` such that ``E ⊆ B``, we will have ``A ⊆ B`` because of fundamental set propositions. Then we can conclude that ``B ∈ P(A)``.
   (iii) If we have ``E,B ∈ P(A)``, by definition, we will have ``A ⊆ E`` and ``A ⊆ B``. Because ``A`` is contained in both subsets, we also have ``A ⊆ E ∩ B``, which led us to ``E ∩ B ∈ P(A)``. ``∎`` 
 
 When we attend to define a principal filter in Lean, we will be required to prove that this object is a filter. The following lines are from mathlib repository, being the definition for principal filters that Lean community uses.
@@ -77,7 +77,7 @@ This subsection aims to propose some exercises that will help the reader to test
 Filter definition
 -----------------
   (i) **Exercise 1.** Let ``X`` be a set, a filter ``F`` of ``X`` and two subsets ``V,U ⊆ X``. The intersection of the subsets is on the filter if only if both are in the filter.
-  (ii) **Exercise 2.** Let ``X`` be a set, a filter ``F`` of ``X`` and two subsets ``V,U ⊆ X``. If the subset ``{x | if x ∈ V then x ∈ U }`` is in the filter, then ``U`` is in the filter if ``V`` is in the filter.
+  (ii) **Exercise 2.** Let ``X`` be a set, a filter ``F`` of ``X`` and two subsets ``V,U ⊆ X``. If the subset ``{x ∈ X | if x ∈ V then x ∈ U }`` is in the filter, then ``U`` is in the filter if ``V`` is in the filter.
   
 .. code:: lean
 
@@ -97,15 +97,15 @@ Filter definition
     inter_sets        := assume x y, subset_inter }
     
   localized "notation `P` := filter.principal" in filter
-  variables {X : Type} {f : filter X}
+  variables {X : Type} {F : filter X}
   
-  lemma exercise1 {s t} : s ∩ t ∈ f.sets ↔ s ∈ f.sets ∧ t ∈ f.sets :=
+  lemma exercise1 {V U} : V ∩ U ∈ F.sets ↔ V ∈ F.sets ∧ U ∈ F.sets :=
   begin
     sorry
   end
   
-  lemma exercise2 {s t} (h : {x | x ∈ s → x ∈ t} ∈ f.sets) : 
-    s ∈ f.sets → t ∈ f.sets :=
+  lemma exercise2 {V U} (h : {x | x ∈ V → x ∈ U} ∈ F.sets) : 
+    V ∈ F.sets → U ∈ F.sets :=
   begin
     sorry
   end
