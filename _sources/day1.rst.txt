@@ -69,6 +69,38 @@ When we attend to define a principal filter in Lean, we will be required to prov
 
 Filter Order
 ============
+Having the filter definition, we can define an order with filters using the regular inclusion order of set power subsets.
+
+**Definition 1.2.1** (Filter Order). *Let* ``X`` *be a set. We say that a filter* ``F`` *is finer than a filter* ``G`` *if* ``G ⊆ F`` *and denoted as* ``F ≤ G``.
+
+After defining an order is natural to prove the type of order that it is. In this case, we will prove that this is a partial order.
+
+**Proposition 1.2.2** *The filter order is a partial order.*
+
+*Proof*. To prove the statement, we will see that this relation is reflexive, antisymmetric and transitive.
+
+  (i) Giving a filter ``F``. It is clear that ``F ⊆ F`` then, by definition, we have ``F ≤ F``.
+  (ii) Giving two filters ``F`` and ``G`` satisfying ``F ≤ G`` and ``G ≤ F``. Using the order definition, we have ``G ⊆ F`` and ``F ⊆ G`` consequently, ``F=G`` by the double inclusion lemma.
+  (iii) Let three filters ``F``, ``G`` and ``T`` satisfying ``F ≤ G`` ``G ≤ T``. By definition, we have ``G ⊆ F`` and ``T ⊆ G``. Using the partial order of subsets, we have ``T ⊆ F`` concluding ``F ≤ T``. ``∎``
+
+When we attend to define an order relation in LEAN, we are required to specify the type of order together with the proof that defines the chosen order. The following lines are from the mathlib repository where this order is defined.
+
+.. code:: lean
+  
+  import data.set.basic
+  open set
+  
+  structure filter (X : Type) :=
+  (sets                   : set (set X))
+  (univ_sets              : set.univ ∈ sets)
+  (sets_of_superset {x y} : x ∈ sets → x ⊆ y → y ∈ sets)
+  (inter_sets {x y}       : x ∈ sets → y ∈ sets → x ∩ y ∈ sets)
+  
+  instance : partial_order (filter α) :=
+  { le            := λ f g, ∀ ⦃U : set α⦄, U ∈ g.sets → U ∈ f.sets,
+    le_antisymm   := λ a b h₁ h₂, filter_eq $ subset.antisymm h₂ h₁,
+    le_refl       := λ a, subset.rfl,
+    le_trans      := λ a b c h₁ h₂, subset.trans h₂ h₁ }
 
 Exercices
 =========
@@ -104,7 +136,7 @@ Filter definition
     sorry
   end
   
-  lemma exercise2 {V U} (h : {x | x ∈ V → x ∈ U} ∈ F.sets) : 
+  lemma exercise2 {V U} (h : {x | x ∈ V ↔ x ∈ U} ∈ F.sets) : 
     V ∈ F.sets → U ∈ F.sets :=
   begin
     sorry
